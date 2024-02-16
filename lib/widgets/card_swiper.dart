@@ -9,12 +9,13 @@ class CardMovie extends StatelessWidget {
   Widget build(BuildContext context) {
     return Swiper(
         itemBuilder: (BuildContext context,int index){
-          return Image.network("https://via.placeholder.com/350x150",fit: BoxFit.fill,);
+          return Container(
+            color: const Color.fromARGB(255, 0, 0, 0),
+          );
         },
         itemCount: 3,
         pagination: const SwiperPagination(),
         control: const SwiperControl(),
-        
       );
   }
 }
