@@ -11,14 +11,15 @@ class HomeScreen extends StatelessWidget {
     return Center(
       child: Scaffold(
         appBar: AppBar(
-          
-          title: const Text('Home'),
+          elevation: 0,
+          actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
+          title: const Center(child: Text('Peliculas en cine')),
         ),
-        body: const Center(
-          child: CardMovie(
-          
-          )
-        ),
+        body: const SizedBox(
+          child: Column(
+            children: [CardSwiper(), MovieSlider()],
+          ),
+        )
       ),
     );
   }

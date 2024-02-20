@@ -31,7 +31,7 @@ class MovieSlider extends StatelessWidget {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: 20,
-              itemBuilder: (_, int index) => _MoviePoster(),
+              itemBuilder: (_, int index) => const _MoviePoster(),
             )
           )
         ],
@@ -41,7 +41,7 @@ class MovieSlider extends StatelessWidget {
 }
 
 class _MoviePoster extends StatelessWidget {
-  const _MoviePoster({super.key});
+  const _MoviePoster();
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +56,8 @@ class _MoviePoster extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: const FadeInImage(
-                placeholder: AssetImage('assetName'), 
-                image: AssetImage('assetName'),
+                placeholder: AssetImage('assets/loading.gif'), 
+                image: AssetImage('assets/no-image.jpg'),
                 width: 130,
                 height: 165, 
               ),
