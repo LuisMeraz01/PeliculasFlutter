@@ -9,8 +9,8 @@ class MovieSlider extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Container(
 
-      width: double.infinity,
-      height: size.height,
+      width: double.infinity, // El ancho de contenedor sera todo el ancho disponible
+      height: size.height, // El alto del contenedor sera la altura del dispositivo
       color: Colors.red,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,7 +27,7 @@ class MovieSlider extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
+          Expanded( // se expande para llenar su contenedor padre
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: 20,
@@ -51,11 +51,11 @@ class _MoviePoster extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         children: [
-          GestureDetector(
+          GestureDetector(  // Un widget que detecta gestos del usuario
             onTap: () => Navigator.pushNamed(context, 'details', arguments: ''),
-            child: ClipRRect(
+            child: ClipRRect( // Redondear esquinas del hijo rectangular
               borderRadius: BorderRadius.circular(20),
-              child: const FadeInImage(
+              child: const FadeInImage( // Animacion de desvanecimiento
                 placeholder: AssetImage('assets/loading.gif'), 
                 image: AssetImage('assets/no-image.jpg'),
                 width: 130,
@@ -67,7 +67,7 @@ class _MoviePoster extends StatelessWidget {
           const Text(
             'Ut nulla sit aliquip incididunt aliquip voluptate nisi culpa eiusmod eu exercitation qui reprehenderit ut.',
             maxLines: 2,
-            overflow: TextOverflow.ellipsis,
+            overflow: TextOverflow.ellipsis, // si el texto es demasiado largo se mostrara un ('...')
             textAlign: TextAlign.center,
           )
         ],
