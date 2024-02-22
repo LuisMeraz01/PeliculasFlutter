@@ -10,8 +10,8 @@ class MovieSlider extends StatelessWidget {
     return Container(
 
       width: double.infinity, // El ancho de contenedor sera todo el ancho disponible
-      height: size.height, // El alto del contenedor sera la altura del dispositivo
-      color: Colors.red,
+      height: size.height * 0.30, // El alto del contenedor sera la altura del dispositivo
+      color: const Color.fromARGB(255, 54, 136, 244),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -24,7 +24,9 @@ class MovieSlider extends StatelessWidget {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
+                
               ),
+              
             ),
           ),
           Expanded( // se expande para llenar su contenedor padre
