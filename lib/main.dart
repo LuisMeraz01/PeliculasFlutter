@@ -1,34 +1,48 @@
 import 'package:flutter/material.dart';
-
-import 'screens/screens.dart';
-
+import 'package:peliculas/providers/movies_provider.dart';
+import 'package:peliculas/screens/screens.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const AppState());
+}
+
+class AppState extends StatelessWidget {
+  const AppState({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => MoviesProvider(),
+          lazy: false,
+        )
+      ],
+      child: MyApp(),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 20, 100, 96)),
-        useMaterial3: true,
-        
-      ),
+      title: 'Peliculas',
       initialRoute: 'home',
       routes: {
-        'home': (_) => const HomeScreen(),
-        'details': (_) => const DetailScreen()
+        'home': (_) => HomeScreen(),
+        'details': (_) => DetailScreen(),
       },
-      
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      //home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
-
