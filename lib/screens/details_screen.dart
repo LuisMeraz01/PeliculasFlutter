@@ -1,12 +1,13 @@
 
 import 'package:flutter/material.dart';
 
-class DetailScreen extends StatelessWidget {
-  const DetailScreen({super.key});
+class DetailsScreen extends StatelessWidget {
+  const DetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final String movie = ModalRoute.of(context)?.settings.arguments.toString() ?? 'Sin nombre'; // Trae los argumentos de otra ventana
+    final String movie = ModalRoute.of(context)?.settings.arguments.toString() ?? 'Sin nombre';
+        ModalRoute.of(context)?.settings.arguments.toString() ?? 'Sin Nombre';
     return const Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -14,8 +15,9 @@ class DetailScreen extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate.fixed([
               _PosterAndTitle(),
-            ])
-          )
+              _Overview(),
+            ]),
+          ),
         ],
       ),
     );
@@ -30,24 +32,25 @@ class _CustomAppBar extends StatelessWidget {
     return SliverAppBar(
       backgroundColor: Colors.indigoAccent,
       expandedHeight: 200,
-      floating: false, // Para que pueda cambiar de tamaño
-      pinned: true, // Se quede el nombre de la pelicula aunque hagamos mucho scroll
+      floating: false,
+      pinned: true,
       flexibleSpace: FlexibleSpaceBar(
-        centerTitle: true, // Se quede centrado
+        centerTitle: true,
         titlePadding: EdgeInsets.all(0),
-        
         title: Container(
-          width: double.infinity, // Abarque todo el ancho
+          width: double.infinity,
           alignment: Alignment.bottomCenter,
-          color: Colors.black,
-          child: const Text('movie.title', style: TextStyle(fontSize: 18),),
+          color: Colors.black12,
+          child: const Text(
+            'movie.title',
+            style: TextStyle(fontSize: 18),
+          ),
         ),
         background: FadeInImage(
           placeholder: AssetImage('assets/loading.gif'),
           image: AssetImage('assets/no-image.jpg'),
         ),
       ),
-       
     );
   }
 }
@@ -62,60 +65,73 @@ class _PosterAndTitle extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
-          ClipRRect( // Widget que recorta su hijo rectangularmente con esquinas redondeadas.
+          ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: FadeInImage(
-              placeholder: AssetImage('assets/loading.gif'), 
+              placeholder: AssetImage('assets/loading.gif'),
               image: AssetImage('assets/no-image.jpg'),
               height: 250,
             ),
           ),
-          const SizedBox(width: 20),
+          SizedBox(width: 20),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 Text(
-                  'movie.title', 
+                  'movie.title',
                   style: TextStyle(
-                    fontSize: 30
+                    fontSize: 30,
                   ),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                 ),
                 Text(
-                  'movie.titleORIGINAL', 
+                  'movie.titleoRIGINAL',
                   style: TextStyle(
-                    fontSize: 18
+                    fontSize: 18,
                   ),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                 ),
-                // ROW -> Colocar un icono con tamanio de 20 y sera star_outline, sized box ancho 5 pixeles y texto 'movie.voteAvare' tamanio de 15
                 Row(
                   children: [
-
                     Icon(
-                      Icons.star_outline, 
-                      size: 20, 
-                      color: Colors.amber,
-                      
+                      Icons.star_outline,
+                      size: 20,
+                      color: Colors.blueAccent,
                     ),
-                    SizedBox(width: 5),
+                    SizedBox(
+                      width: 5,
+                    ),
                     Text(
-                      'movie.voteAvare', 
-                      style: TextStyle(
-                        fontSize: 15,
-                        overflow: TextOverflow.ellipsis,
-                      )
+                      'movie.voteAverage',
+                      style: TextStyle(fontSize: 15),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
                     )
                   ],
-                )
+                ),
               ],
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class _Overview extends StatelessWidget {
+  const _Overview({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: const Text(
+        'Exercitation amet commodo et elit id dolor adipisicing aliquip. Eu officia laborum in sint consectetur enim nostrud. Anim est Lorem sit mollit ex sunt in enim pariatur duis. Labore incididunt excepteur culpa sint minim. Aute elit amet sunt cillum eiusmod fugiat esse magna voluptate elit Lorem consectetur. Pariatur aliquip eiusmod labore anim minim officia non.',
+        textAlign: TextAlign.justify,
+        style: TextStyle(fontSize: 15),
       ),
     );
   }

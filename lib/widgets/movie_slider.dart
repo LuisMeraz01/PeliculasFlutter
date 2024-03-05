@@ -1,41 +1,41 @@
-
 import 'package:flutter/material.dart';
 
+import '../models/models.dart';
+
 class MovieSlider extends StatelessWidget {
-  const MovieSlider({super.key});
+  final List<Movie> movies;
+  final String? title;
+  const MovieSlider({super.key, required this.movies, this.title});
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-
-      width: double.infinity, // El ancho de contenedor sera todo el ancho disponible
-      height: size.height * 0.30, // El alto del contenedor sera la altura del dispositivo
-      color: const Color.fromARGB(255, 54, 136, 244),
+      width: double.infinity,
+      height: size.height * 0.30,
+      color: Colors.black12,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: 20
+              horizontal: 20,
             ),
             child: Text(
               'Populares',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                
               ),
-              
             ),
           ),
-          Expanded( // se expande para llenar su contenedor padre
+          Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 20,
-              itemBuilder: (_, int index) => const _MoviePoster(),
-            )
-          )
+              itemCount: movies.length,
+              itemBuilder: (_, int index) => _MoviePoster(movie: movies[index]),
+            ),
+          ),
         ],
       ),
     );
@@ -43,7 +43,8 @@ class MovieSlider extends StatelessWidget {
 }
 
 class _MoviePoster extends StatelessWidget {
-  const _MoviePoster();
+  final Movie movie;
+  const _MoviePoster({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -53,23 +54,23 @@ class _MoviePoster extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         children: [
-          GestureDetector(  // Un widget que detecta gestos del usuario
+          GestureDetector(
             onTap: () => Navigator.pushNamed(context, 'details', arguments: ''),
-            child: ClipRRect( // Redondear esquinas del hijo rectangular
+            child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: const FadeInImage( // Animacion de desvanecimiento
-                placeholder: AssetImage('assets/loading.gif'), 
-                image: AssetImage('assets/no-image.jpg'),
+              child: FadeInImage(
+                placeholder: AssetImage('assets/loading.gif'),
+                image: NetworkImage(movie.fullPosterImg),
                 width: 130,
-                height: 165, 
+                height: 165,
               ),
             ),
           ),
-          const SizedBox(height: 5,),
-          const Text(
-            'Ut nulla sit aliquip incididunt aliquip voluptate nisi culpa eiusmod eu exercitation qui reprehenderit ut.',
+          const SizedBox(height: 5),
+          Text(
+            movie.title,
             maxLines: 2,
-            overflow: TextOverflow.ellipsis, // si el texto es demasiado largo se mostrara un ('...')
+            overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
           )
         ],

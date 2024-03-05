@@ -1,7 +1,6 @@
-
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:peliculas/models/movie.dart';
+import 'package:peliculas/models/models.dart';
 
 class CardSwiper extends StatelessWidget {
   final List<Movie> movies;
@@ -9,11 +8,9 @@ class CardSwiper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final size = MediaQuery.of(context).size;
 
     return SizedBox(
-
       width: double.infinity,
       height: size.height * 0.5,
       child: Swiper(
@@ -30,9 +27,8 @@ class CardSwiper extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: FadeInImage(
-                placeholder: AssetImage('assets/loading.gif'),
-                image: NetworkImage(movie.fullPosterImg),
-              ),
+                  placeholder: AssetImage('assets/loading.gif'),
+                  image: NetworkImage(movie.fullPosterImg)),
             ),
           );
         },

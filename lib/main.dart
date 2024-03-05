@@ -19,7 +19,7 @@ class AppState extends StatelessWidget {
           lazy: false,
         )
       ],
-      child: MyApp(),
+      child: const MyApp(),
     );
   }
 }
@@ -31,12 +31,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'Peliculas',
       initialRoute: 'home',
       routes: {
         'home': (_) => HomeScreen(),
-        'details': (_) => DetailScreen(),
+        'details': (_) => DetailsScreen(),
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
